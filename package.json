@@ -1,8 +1,12 @@
 {
   "name": "hybris-hac-api",
-  "version": "1.0.7",
-  "description": "",
+  "version": "1.0.8",
+  "description": "HAC API Methods",
   "main": "src/index.js",
+  "keywords": [
+    "hybris",
+    "hac"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
