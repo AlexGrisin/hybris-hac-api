@@ -1,6 +1,6 @@
 {
   "name": "hybris-hac-api",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "HAC API Methods",
   "main": "src/index.js",
   "keywords": [

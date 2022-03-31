@@ -41,5 +41,7 @@ The following environment variables must be set before you can successfully run 
 This is done in project specific `.env` file. You can set it globally on your machine:
 
 ```shell
-export HAC_HOST=<token>
+export HAC_HOST=http://my-hybris-server.tst:9001
+export HAC_USER=admin
+export HAC_PASSWORD=nimda
 ```
