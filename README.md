@@ -1,3 +1,45 @@
 # hybris-hac-api
 
-Description TBD
+## Access to HAC Console API
+
+### Execute flexible search
+
+```javascript
+const hac = require('hybris-hac-api');
+
+app
+  .flexibleSearch(
+    'select {pk} from {product} where {code} = "abc-def-ghi"'
+  )
+  .then((result) => console.log(result));
+```
+
+### Execute impex import
+
+```javascript
+const hac = require('hybris-hac-api');
+
+app.impexImport('UPDATE Product; code[unique=true]; name\n ; abc-def-ghi ; My Product');
+```
+
+### Execute scripts
+
+```javascript
+const hac = require('hybris-hac-api');
+
+app.executeScript('println "hello"').then((result) => console.log(result));
+```
+
+## Configuration
+
+The following environment variables must be set before you can successfully run console imports:
+
+- `HAC_HOST`
+- `HAC_USER`
+- `HAC_PASSWORD`
+
+This is done in project specific `.env` file. You can set it globally on your machine:
+
+```shell
+export HAC_HOST=<token>
+```

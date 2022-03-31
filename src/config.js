@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 exports.config = {
-  USER_NAME: process.env.USER_NAME || "admin",
-  PASSWORD: process.env.PASSWORD || "nimda",
-  host: process.env.host || "http://tst11-hybris-be.raw-indigo.tst:9001",
+  HAC_USER: process.env.USER_NAME || "admin",
+  HAC_PASSWORD: process.env.PASSWORD || "nimda",
+  HAC_HOST: process.env.host,
 };

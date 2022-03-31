@@ -129,7 +129,7 @@ build = function () {
     }),
     withCredentials: "true",
     jar: cookieJar,
-    baseURL: config.host,
+    baseURL: config.HAC_HOST,
     timeout: 2 * 60 * 1000,
   });
 };
@@ -142,8 +142,8 @@ openHAC = async function () {
 
 loginHAC = async function () {
   let data = querystring.stringify({
-    j_username: config.USER_NAME,
-    j_password: config.PASSWORD,
+    j_username: config.HAC_USER,
+    j_password: config.HAC_PASSWORD,
     submit: "login",
     _csrf: csrfToken,
   });
@@ -153,6 +153,13 @@ loginHAC = async function () {
     data: data,
     headers: { Cookie: jSession },
   });
+
+  const dom = new JSDOM(loginResponse.data);
+  if (dom.window.document.querySelector("#console") === null) {
+    const loginError =
+      dom.window.document.querySelector("#loginErrors").textContent;
+    throw new Error(`HAC login failed: ${loginError}\n${loginResponse.data}`);
+  }
 
   csrfToken = getCsrfToken(loginResponse);
 };
