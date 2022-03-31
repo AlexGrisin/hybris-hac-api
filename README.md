@@ -7,7 +7,7 @@
 ```javascript
 const hac = require('hybris-hac-api');
 
-app
+hac
   .flexibleSearch(
     'select {pk} from {product} where {code} = "abc-def-ghi"'
   )
@@ -19,7 +19,7 @@ app
 ```javascript
 const hac = require('hybris-hac-api');
 
-app.impexImport('UPDATE Product; code[unique=true]; name\n ; abc-def-ghi ; My Product');
+hac.impexImport('UPDATE Product; code[unique=true]; name\n ; abc-def-ghi ; My Product');
 ```
 
 ### Execute scripts
@@ -27,7 +27,7 @@ app.impexImport('UPDATE Product; code[unique=true]; name\n ; abc-def-ghi ; My Pr
 ```javascript
 const hac = require('hybris-hac-api');
 
-app.executeScript('println "hello"').then((result) => console.log(result));
+hac.executeScript('println "hello"').then((result) => console.log(result));
 ```
 
 ## Configuration
