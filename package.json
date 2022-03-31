@@ -7,9 +7,6 @@
     "hybris",
     "hac"
   ],
-  "publishConfig": {
-    "registry":"https://github.com/AlexGrisin/hybris-hac-api"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
