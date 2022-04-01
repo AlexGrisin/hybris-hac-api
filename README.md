@@ -24,10 +24,20 @@ hac.impexImport('UPDATE Product; code[unique=true]; name\n ; abc-def-ghi ; My Pr
 
 ### Execute scripts
 
+By default script execution is done with commit flag set to `true` and script type as `groovy`:
+
 ```javascript
 const hac = require('hybris-hac-api');
 
 hac.executeScript('println "hello"').then((result) => console.log(result));
+```
+
+Settings commit flag and script type can be overridden:
+
+```javascript
+const hac = require('hybris-hac-api');
+
+hac.executeScript('println "hello"', false, 'shell').then((result) => console.log(result));
 ```
 
 ## Configuration
