@@ -47,8 +47,18 @@ The following environment variables must be set before you can successfully run 
 - `HAC_HOST`
 - `HAC_USER`
 - `HAC_PASSWORD`
+- `HYBRIS_VERSION`
 
-This is done in project specific `.env` file. You can set it globally on your machine:
+This is done in project specific `.env` file:
+
+```shell
+HAC_HOST=http://my-hybris-server.tst:9001
+HAC_USER=admin
+HAC_PASSWORD=nimda
+HYBRIS_VERSION=5.7
+```
+
+You can a;s set it globally on your machine:
 
 ```shell
 export HAC_HOST=http://my-hybris-server.tst:9001

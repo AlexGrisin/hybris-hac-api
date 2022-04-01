@@ -2,7 +2,7 @@ const querystring = require("querystring");
 const he = require("he");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const hac = require("./src/hac");
+const hac = require("./src/HACApiConnect");
 
 impexImport = async function (script) {
   await hac.login();
@@ -35,6 +35,8 @@ impexImport = async function (script) {
       `Impex import failed:\n${script}\n\nImpex result:\n${impexResult}`
     );
   }
+
+  console.log(executeScript.data);
 };
 
 flexibleSearch = async function (query) {
@@ -61,7 +63,7 @@ flexibleSearch = async function (query) {
 
   const result = executeQuery.data;
 
-  if (!result || result.resultList.length === 0) {
+  if (!result || !result.resultList || result.resultList.length === 0) {
     throw new Error(`HAC Flexible Search returned 0 results:\n${query}`);
   }
 
@@ -90,9 +92,14 @@ executeScript = async function (
     commit: commit,
   });
 
+  let url =
+    process.env.HYBRIS_VERSION < 5.7
+      ? `/hac/console/${scriptType}/execute`
+      : "/hac/console/scripting/execute";
+
   const executeScript = await global.instance({
     method: "post",
-    url: "/hac/console/scripting/execute",
+    url: url,
     data: scriptData,
     headers: {
       Cookie: jSession,

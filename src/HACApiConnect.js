@@ -72,7 +72,8 @@ getJSessionId = function (response) {
 };
 
 getCsrfToken = function (response) {
-  return response.data.match('<meta name="_csrf" content="([^"]+)')[1];
+  const csrf = response.data.match('<meta name="_csrf" content="([^"]+)');
+  return csrf ? csrf[1] : "";
 };
 
 module.exports = {
