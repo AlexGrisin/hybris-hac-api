@@ -58,7 +58,7 @@ HAC_PASSWORD=nimda
 HYBRIS_VERSION=5.7
 ```
 
-You can a;s set it globally on your machine:
+You can also set it globally on your machine:
 
 ```shell
 export HAC_HOST=http://my-hybris-server.tst:9001
