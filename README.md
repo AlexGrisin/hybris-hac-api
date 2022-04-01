@@ -64,4 +64,5 @@ You can a;s set it globally on your machine:
 export HAC_HOST=http://my-hybris-server.tst:9001
 export HAC_USER=admin
 export HAC_PASSWORD=nimda
+export HYBRIS_VERSION=5.7
 ```
