@@ -66,3 +66,11 @@ export HAC_USER=admin
 export HAC_PASSWORD=nimda
 export HYBRIS_VERSION=5.7
 ```
+
+HAC API Connector can be also reconfigured using `configure` method:
+
+```js
+const hac = require('hybris-hac-api');
+
+hac.configure('https://my-hybris-server.test', 'admin', 'nimda', '5.7');
+```

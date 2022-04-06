@@ -5,7 +5,6 @@ const tough = require("tough-cookie");
 const querystring = require("querystring");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const config = require("hybris-hac-api/src/config").config;
 
 global.csrfToken = "";
 global.jSession = "";
@@ -18,6 +17,11 @@ login = async function () {
 };
 
 build = function () {
+  if (!config.HAC_HOST) {
+    throw Error(
+      "HAC_HOST is not configured. Please use .env file for configuration or set it via configure() method."
+    );
+  }
   axiosCookieJarSupport(axios);
   const cookieJar = new tough.CookieJar();
   return axios.create({
@@ -32,9 +36,13 @@ build = function () {
 };
 
 openHAC = async function () {
-  const response = await instance.get("/hac/login.jsp");
-  jSession = getJSessionId(response);
-  csrfToken = getCsrfToken(response);
+  try {
+    const response = await instance.get("/hac/login.jsp");
+    jSession = getJSessionId(response);
+    csrfToken = getCsrfToken(response);
+  } catch (e) {
+    throw new Error(`HAC open failed: ${e.message}`);
+  }
 };
 
 loginHAC = async function () {
@@ -44,6 +52,7 @@ loginHAC = async function () {
     submit: "login",
     _csrf: csrfToken,
   });
+
   const loginResponse = await instance({
     method: "post",
     url: "/hac/j_spring_security_check",
